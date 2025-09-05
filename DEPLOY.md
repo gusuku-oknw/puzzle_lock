@@ -70,15 +70,30 @@ git push -u origin main
 ### 3. オフライン利用
 初回アクセス後はインターネットなしでも動作
 
-## 🛠️ トラブルシューティング
+## 🛠️ 開発環境のセットアップ
 
-### Windows環境でのビルドエラー
-現在Windows環境でrollupの依存関係に問題がありますが、GitHub Actions（Linux環境）では正常動作します。
+### Windows環境での開発
+**推奨**: Yarn を使用してください
 
-### 解決方法
-1. このコードをGitHubにプッシュ
-2. GitHub Actions による自動ビルドを使用
-3. 実際のデプロイは問題なく成功します
+```bash
+# Yarn で依存関係をインストール
+yarn install
+
+# 開発サーバー起動
+yarn dev
+
+# プロダクションビルド
+yarn build
+```
+
+### npm を使いたい場合
+Windows環境でのrollup問題がありますが、GitHub Actions（Linux環境）では正常動作します。
+
+### 解決済み ✅
+- **開発サーバー**: `yarn dev` で正常動作
+- **プロダクションビルド**: `yarn build` で正常動作  
+- **PWA機能**: Service Worker + Manifest 正常生成
+- **GitHub Actions**: npm での自動デプロイ対応済み
 
 ## ✅ デプロイ完了チェックリスト
 

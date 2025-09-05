@@ -101,11 +101,23 @@
   color: #333;
 }
 
-.grid-size select {
+.grid-size select,
+.difficulty-select select {
   padding: 8px 12px;
   border: 1px solid #ddd;
   border-radius: 5px;
   font-size: 14px;
+}
+
+.difficulty-select {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.difficulty-select label {
+  font-weight: 500;
+  color: #333;
 }
 
 .canvas-container {
@@ -119,6 +131,14 @@
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background: #fff;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.puzzle-canvas:active {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .puzzle-info {
@@ -130,6 +150,222 @@
 
 .file-input input[type="file"] {
   display: none;
+}
+
+.interaction-hints {
+  margin-top: 15px;
+  padding: 15px;
+  background: #f0f8ff;
+  border-radius: 8px;
+  border-left: 4px solid #007bff;
+}
+
+.interaction-hints p {
+  margin: 0 0 10px 0;
+  font-weight: 600;
+  color: #333;
+}
+
+.interaction-hints ul {
+  margin: 0;
+  padding-left: 20px;
+  text-align: left;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.interaction-hints li {
+  margin-bottom: 8px;
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.interaction-hints strong {
+  color: #007bff;
+}
+
+/* New puzzle system styles */
+.puzzle-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.image-preview {
+  text-align: center;
+  padding: 20px;
+}
+
+.image-preview h3 {
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.image-preview p {
+  color: #666;
+  font-size: 1.1rem;
+  margin-top: 15px;
+}
+
+.completion-counter {
+  background: #28a745;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  margin-top: 10px;
+  display: inline-block;
+}
+
+.welcome-message {
+  text-align: center;
+  padding: 40px 20px;
+  background: #f8f9fa;
+  border-radius: 15px;
+  margin: 20px;
+}
+
+.welcome-message h2 {
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.welcome-steps {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 200px;
+}
+
+.step-number {
+  background: #007bff;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.step p {
+  text-align: center;
+  color: #555;
+  margin: 0;
+}
+
+/* Puzzle grid specific styles */
+.puzzle-grid-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.puzzle-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 400px;
+  gap: 15px;
+}
+
+.history-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.puzzle-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-secondary {
+  background: #6c757d;
+  color: white;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: #545b62;
+}
+
+.btn-secondary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-solve {
+  background: #17a2b8;
+  color: white;
+}
+
+.btn-solve:hover:not(:disabled) {
+  background: #117a8b;
+}
+
+.puzzle-status {
+  text-align: center;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.puzzle-status.completed {
+  background: linear-gradient(135deg, #28a745, #20c997);
+  color: white;
+  box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+}
+
+.completion-message {
+  font-size: 1.2rem;
+  font-weight: 600;
+  animation: celebrationPulse 2s infinite;
+}
+
+.progress-message {
+  color: #666;
+  font-size: 1.1rem;
+}
+
+@keyframes celebrationPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.puzzle-instructions {
+  background: #e3f2fd;
+  padding: 15px;
+  border-radius: 10px;
+  border-left: 4px solid #2196f3;
+  max-width: 400px;
+  margin-top: 20px;
+}
+
+.puzzle-instructions h4 {
+  margin: 0 0 10px 0;
+  color: #1976d2;
+}
+
+.puzzle-instructions ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.puzzle-instructions li {
+  margin-bottom: 5px;
+  color: #555;
 }
 
 /* Responsive design */
