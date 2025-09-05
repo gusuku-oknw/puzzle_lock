@@ -1,9 +1,17 @@
-import { defineConfig } from 'vite'
+﻿import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 
+declare const process: any
+
+// Infer base path for GitHub Pages if available
+const forcedBase: string | undefined = process.env.BASE_PATH
+const repoName = process.env.GITHUB_REPOSITORY?.split('/')?.[1]
+const inferred = repoName && !repoName.endsWith('.github.io') ? `/${repoName}/` : '/'
+const base = forcedBase ?? inferred
+
 export default defineConfig({
-  base: '/puzzle_lock/',
+  base,
   plugins: [
     react(),
     VitePWA({
@@ -26,35 +34,35 @@ export default defineConfig({
       },
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
       manifest: {
-        name: 'Puzzle Maker - 画像パズル作成アプリ',
+        name: 'Puzzle Maker - 逕ｻ蜒上ヱ繧ｺ繝ｫ菴懈・繧｢繝励Μ',
         short_name: 'Puzzle Maker',
-        description: '画像をアップロードしてパズルを作成・保存できるアプリ',
-        start_url: '/puzzle_lock/',
+        description: '逕ｻ蜒上ｒ繧｢繝・・繝ｭ繝ｼ繝峨＠縺ｦ繝代ぜ繝ｫ繧剃ｽ懈・繝ｻ菫晏ｭ倥〒縺阪ｋ繧｢繝励Μ',
+        start_url: base,
         display: 'standalone',
         background_color: '#ffffff',
         theme_color: '#007bff',
         orientation: 'portrait',
-        scope: '/puzzle_lock/',
+        scope: base,
         lang: 'ja',
         categories: ['games', 'entertainment', 'utilities'],
         icons: [
           {
-            src: '/puzzle_lock/pwa-64x64.png',
+            src: 'pwa-64x64.png',
             sizes: '64x64',
             type: 'image/png'
           },
           {
-            src: '/puzzle_lock/pwa-192x192.png',
+            src: 'pwa-192x192.png',
             sizes: '192x192',
             type: 'image/png'
           },
           {
-            src: '/puzzle_lock/pwa-512x512.png',
+            src: 'pwa-512x512.png',
             sizes: '512x512',
             type: 'image/png'
           },
           {
-            src: '/puzzle_lock/maskable-icon-512x512.png',
+            src: 'maskable-icon-512x512.png',
             sizes: '512x512',
             type: 'image/png',
             purpose: 'maskable'
@@ -62,21 +70,22 @@ export default defineConfig({
         ],
         screenshots: [
           {
-            src: '/puzzle_lock/screenshot-wide.png',
+            src: 'screenshot-wide.png',
             sizes: '1280x720',
             type: 'image/png',
             form_factor: 'wide',
-            label: 'Puzzle Maker アプリのメイン画面'
+            label: 'Puzzle Maker 繧｢繝励Μ縺ｮ繝｡繧､繝ｳ逕ｻ髱｢'
           },
           {
-            src: '/puzzle_lock/screenshot-narrow.png',
+            src: 'screenshot-narrow.png',
             sizes: '750x1334',
             type: 'image/png',
             form_factor: 'narrow',
-            label: 'モバイル版 Puzzle Maker'
+            label: '繝｢繝舌う繝ｫ迚・Puzzle Maker'
           }
         ]
       }
     })
   ]
 })
+

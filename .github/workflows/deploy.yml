@@ -1,71 +1,49 @@
-# GitHub Pages への自動デプロイ設定
-name: Deploy to GitHub Pages
+﻿name: Deploy to GitHub Pages
 
 on:
-  # main ブランチへの push 時に実行
   push:
     branches: [ main ]
-  
-  # 手動実行も可能にする
   workflow_dispatch:
 
-# GitHub Pages への書き込み権限を設定
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# 同時実行制御: 同じワークフローが複数実行されないようにする
 concurrency:
-  group: "pages"
+  group: pages
   cancel-in-progress: false
 
 jobs:
-  # ビルドジョブ
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'yarn'
-      
+
       - name: Install dependencies
         run: yarn install --frozen-lockfile
-      
+
       - name: Build project
         run: yarn build
-      
-      - name: Debug build output
-        run: |
-          echo "Contents of dist directory:"
-          ls -la dist/
-          echo "Contents of dist/index.html:"
-          cat dist/index.html
-          echo "Verify Vite base configuration is correct:"
-          grep -n "base:" vite.config.ts || echo "No base config found"
-          echo "Root directory contents:"
-          ls -la .
-      
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
-      
-      - name: Verify upload directory
-        run: |
-          echo "About to upload contents of ./dist:"
-          find ./dist -type f -name "*.html" -exec echo "HTML file: {}" \; -exec cat {} \;
-      
+
+      - name: Add SPA 404 fallback
+        run: cp dist/index.html dist/404.html
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # dist フォルダをアップロード
-          path: './dist'
+          path: dist
 
-  # デプロイジョブ
   deploy:
     environment:
       name: github-pages
