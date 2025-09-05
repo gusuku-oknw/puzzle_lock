@@ -46,9 +46,18 @@ jobs:
           ls -la dist/
           echo "Contents of dist/index.html:"
           cat dist/index.html
+          echo "Verify Vite base configuration is correct:"
+          grep -n "base:" vite.config.ts || echo "No base config found"
+          echo "Root directory contents:"
+          ls -la .
       
       - name: Setup Pages
         uses: actions/configure-pages@v4
+      
+      - name: Verify upload directory
+        run: |
+          echo "About to upload contents of ./dist:"
+          find ./dist -type f -name "*.html" -exec echo "HTML file: {}" \; -exec cat {} \;
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
