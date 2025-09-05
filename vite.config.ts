@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
+  base: '/puzzle_lock/',
   plugins: [
     react(),
     VitePWA({
@@ -18,9 +19,6 @@ export default defineConfig({
               expiration: {
                 maxEntries: 10,
                 maxAgeSeconds: 60 * 60 * 24 * 365 // 1 year
-              },
-              cacheKeyWillBeUsed: async ({ request }) => {
-                return `${request.url}`
               }
             }
           }
