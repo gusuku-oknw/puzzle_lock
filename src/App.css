@@ -1,0 +1,161 @@
+#root {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.app {
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.app-header {
+  margin-bottom: 30px;
+}
+
+.app-header h1 {
+  color: #213547;
+  margin-bottom: 10px;
+  font-size: 2.5rem;
+}
+
+.app-header p {
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 10px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: #007bff;
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: #0056b3;
+}
+
+.btn-shuffle {
+  background: #28a745;
+  color: white;
+}
+
+.btn-shuffle:hover:not(:disabled) {
+  background: #1e7e34;
+}
+
+.btn-reset {
+  background: #ffc107;
+  color: #212529;
+}
+
+.btn-reset:hover:not(:disabled) {
+  background: #d39e00;
+}
+
+.btn-save {
+  background: #dc3545;
+  color: white;
+}
+
+.btn-save:hover:not(:disabled) {
+  background: #c82333;
+}
+
+.grid-size {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.grid-size label {
+  font-weight: 500;
+  color: #333;
+}
+
+.grid-size select {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.canvas-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.puzzle-canvas {
+  border: 3px solid #333;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background: #fff;
+}
+
+.puzzle-info {
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #28a745;
+}
+
+.file-input input[type="file"] {
+  display: none;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .controls {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .puzzle-canvas {
+    max-width: 90vw;
+    height: auto;
+  }
+  
+  .app-header h1 {
+    font-size: 2rem;
+  }
+}
+
+/* Loading animation */
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+.loading {
+  animation: pulse 1.5s ease-in-out infinite;
+}
