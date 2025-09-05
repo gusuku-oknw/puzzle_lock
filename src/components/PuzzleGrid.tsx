@@ -274,6 +274,8 @@ const PuzzleGrid = forwardRef<PuzzleGridRef, PuzzleGridProps>(({
               gridSize={gridSize}
               tileSize={tileSize}
               isCompleted={false}
+              x={0}
+              y={0}
             />
           ) : null}
         </DragOverlay>

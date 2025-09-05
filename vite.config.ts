@@ -29,32 +29,32 @@ export default defineConfig({
         name: 'Puzzle Maker - 画像パズル作成アプリ',
         short_name: 'Puzzle Maker',
         description: '画像をアップロードしてパズルを作成・保存できるアプリ',
-        start_url: '/',
+        start_url: '/puzzle_lock/',
         display: 'standalone',
         background_color: '#ffffff',
         theme_color: '#007bff',
         orientation: 'portrait',
-        scope: '/',
+        scope: '/puzzle_lock/',
         lang: 'ja',
         categories: ['games', 'entertainment', 'utilities'],
         icons: [
           {
-            src: '/pwa-64x64.png',
+            src: '/puzzle_lock/pwa-64x64.png',
             sizes: '64x64',
             type: 'image/png'
           },
           {
-            src: '/pwa-192x192.png',
+            src: '/puzzle_lock/pwa-192x192.png',
             sizes: '192x192',
             type: 'image/png'
           },
           {
-            src: '/pwa-512x512.png',
+            src: '/puzzle_lock/pwa-512x512.png',
             sizes: '512x512',
             type: 'image/png'
           },
           {
-            src: '/maskable-icon-512x512.png',
+            src: '/puzzle_lock/maskable-icon-512x512.png',
             sizes: '512x512',
             type: 'image/png',
             purpose: 'maskable'
@@ -62,14 +62,14 @@ export default defineConfig({
         ],
         screenshots: [
           {
-            src: '/screenshot-wide.png',
+            src: '/puzzle_lock/screenshot-wide.png',
             sizes: '1280x720',
             type: 'image/png',
             form_factor: 'wide',
             label: 'Puzzle Maker アプリのメイン画面'
           },
           {
-            src: '/screenshot-narrow.png',
+            src: '/puzzle_lock/screenshot-narrow.png',
             sizes: '750x1334',
             type: 'image/png',
             form_factor: 'narrow',
