@@ -2,16 +2,8 @@
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 
-declare const process: any
-
-// Infer base path for GitHub Pages if available
-const forcedBase: string | undefined = process.env.BASE_PATH
-const repoName = process.env.GITHUB_REPOSITORY?.split('/')?.[1]
-const inferred = repoName && !repoName.endsWith('.github.io') ? `/${repoName}/` : '/'
-const base = forcedBase ?? inferred
-
 export default defineConfig({
-  base,
+  base: '/puzzle_lock/',
   plugins: [
     react(),
     VitePWA({
@@ -37,32 +29,32 @@ export default defineConfig({
         name: 'Puzzle Maker - 逕ｻ蜒上ヱ繧ｺ繝ｫ菴懈・繧｢繝励Μ',
         short_name: 'Puzzle Maker',
         description: '逕ｻ蜒上ｒ繧｢繝・・繝ｭ繝ｼ繝峨＠縺ｦ繝代ぜ繝ｫ繧剃ｽ懈・繝ｻ菫晏ｭ倥〒縺阪ｋ繧｢繝励Μ',
-        start_url: base,
+        start_url: '/puzzle_lock/',
         display: 'standalone',
         background_color: '#ffffff',
         theme_color: '#007bff',
         orientation: 'portrait',
-        scope: base,
+        scope: '/puzzle_lock/',
         lang: 'ja',
         categories: ['games', 'entertainment', 'utilities'],
         icons: [
           {
-            src: 'pwa-64x64.png',
+            src: '/puzzle_lock/pwa-64x64.png',
             sizes: '64x64',
             type: 'image/png'
           },
           {
-            src: 'pwa-192x192.png',
+            src: '/puzzle_lock/pwa-192x192.png',
             sizes: '192x192',
             type: 'image/png'
           },
           {
-            src: 'pwa-512x512.png',
+            src: '/puzzle_lock/pwa-512x512.png',
             sizes: '512x512',
             type: 'image/png'
           },
           {
-            src: 'maskable-icon-512x512.png',
+            src: '/puzzle_lock/maskable-icon-512x512.png',
             sizes: '512x512',
             type: 'image/png',
             purpose: 'maskable'
@@ -70,18 +62,18 @@ export default defineConfig({
         ],
         screenshots: [
           {
-            src: 'screenshot-wide.png',
+            src: '/puzzle_lock/screenshot-wide.png',
             sizes: '1280x720',
             type: 'image/png',
             form_factor: 'wide',
-            label: 'Puzzle Maker 繧｢繝励Μ縺ｮ繝｡繧､繝ｳ逕ｻ髱｢'
+            label: 'Puzzle Maker アプリのメイン画面'
           },
           {
-            src: 'screenshot-narrow.png',
+            src: '/puzzle_lock/screenshot-narrow.png',
             sizes: '750x1334',
             type: 'image/png',
             form_factor: 'narrow',
-            label: '繝｢繝舌う繝ｫ迚・Puzzle Maker'
+            label: 'モバイル版 Puzzle Maker'
           }
         ]
       }

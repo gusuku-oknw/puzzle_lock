@@ -2,7 +2,7 @@
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
   workflow_dispatch:
 
 permissions:
@@ -25,13 +25,17 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'yarn'
-
+          
+      - name: Enable Corepack
+        run: corepack enable
+        
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
       - name: Build project
         run: yarn build
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
