@@ -80,6 +80,9 @@ const PuzzleGrid = forwardRef<PuzzleGridRef, PuzzleGridProps>(({
   const [history, setHistory] = useState<HistoryState[]>([])
   const [historyIndex, setHistoryIndex] = useState(-1)
   
+  // シャッフル前の状態を保存
+  const [preShuffleState, setPreShuffleState] = useState<string[] | null>(null)
+  
   // ドラッグ中のアイテム
   const [activeId, setActiveId] = useState<string | null>(null)
 
@@ -174,16 +177,30 @@ const PuzzleGrid = forwardRef<PuzzleGridRef, PuzzleGridProps>(({
     }
   }, [history, historyIndex])
 
-  // 新しいパズルを生成
+  // シャッフル実行
   const shufflePuzzle = useCallback(() => {
     const shuffled = shuffleWithDifficulty(solvedOrder, difficulty)
     
-    // 履歴に現在の状態を保存してからシャッフル
+    // 履歴に現在の状態を保存
     if (order.length > 0) {
       addToHistory(order)
     }
+    
+    // シャッフル前の状態を保存
+    setPreShuffleState([...order])
     setOrder(shuffled)
   }, [solvedOrder, difficulty, order, addToHistory, shuffleWithDifficulty])
+
+  // 逆シャッフル実行
+  const reverseShuffle = useCallback(() => {
+    if (preShuffleState) {
+      // 履歴に現在の状態を保存
+      addToHistory(order)
+      // シャッフル前の状態に戻す
+      setOrder([...preShuffleState])
+      setPreShuffleState(null) // 逆シャッフル後は状態をクリア
+    }
+  }, [preShuffleState, order, addToHistory])
 
   return (
     <div className="puzzle-grid-container">
@@ -207,12 +224,21 @@ const PuzzleGrid = forwardRef<PuzzleGridRef, PuzzleGridProps>(({
         </div>
         
         <div className="puzzle-actions">
-          <button 
-            onClick={shufflePuzzle}
-            className="btn btn-shuffle"
-          >
-            🔀 再シャッフル
-          </button>
+          {preShuffleState ? (
+            <button 
+              onClick={reverseShuffle}
+              className="btn btn-shuffle"
+            >
+              ↩️ 逆シャッフル
+            </button>
+          ) : (
+            <button 
+              onClick={shufflePuzzle}
+              className="btn btn-shuffle"
+            >
+              🔀 シャッフル
+            </button>
+          )}
         </div>
       </div>
 
